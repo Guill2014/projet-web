@@ -80,6 +80,7 @@ function setAuthState(isAuthenticated) {
   usersPanel.classList.toggle('hidden', !isAuthenticated);
   logoutBtn.classList.toggle('hidden', !isAuthenticated);
   taskFormPanel.classList.add('hidden');
+  document.body.classList.toggle('auth-mode', !isAuthenticated);
 }
 
 function showTaskForm(task = null) {

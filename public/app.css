@@ -67,6 +67,20 @@ main {
   grid-template-columns: minmax(220px, 24%) minmax(0, 1fr);
   gap: 24px;
   align-items: start;
+  min-height: calc(100vh - 112px);
+}
+
+body.auth-mode main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 112px);
+}
+
+.auth-panel {
+  margin: auto;
+  width: min(100%, 520px);
+  max-width: 520px;
 }
 
 header {
@@ -98,7 +112,7 @@ header {
 
 .auth-panel,
 .task-form-panel {
-  max-width: 520px;
+  max-width: 1040px;
 }
 
 .auth-tabs {
