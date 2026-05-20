@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestionnaire de tâches collaboratif</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header>
+        <div class="brand">
+          <h1>TasksCollab</h1>
+          <p>Gestionnaire de tâches moderne</p>
+        </div>
+        <div class="task-toolbar hidden" id="taskToolbar">
+          <div class="task-filters">
+            <div>
+              <label>Filtrer par priorité</label>
+              <select id="filterPriority">
+                <option value="all">Toutes</option>
+                <option value="high">Haute</option>
+                <option value="medium">Moyenne</option>
+                <option value="low">Basse</option>
+              </select>
+            </div>
+            <div>
+              <label>Filtrer par statut</label>
+              <select id="filterStatus">
+                <option value="all">Tous</option>
+                <option value="pending">À faire</option>
+                <option value="completed">Terminées</option>
+              </select>
+            </div>
+          </div>
+          <button id="newTaskBtn" class="primary small">Nouvelle tâche</button>
+        </div>
+        <button id="logoutBtn" class="secondary hidden">Déconnexion</button>
+      </header>
+
+      <main>
+        <section class="panel auth-panel" id="authPanel">
+          <div class="auth-tabs">
+            <button id="showLogin" class="active">Connexion</button>
+            <button id="showRegister">Inscription</button>
+          </div>
+
+          <form id="loginForm" class="auth-form active">
+            <label>Nom d'utilisateur</label>
+            <input type="text" id="loginUsername" autocomplete="username" />
+            <label>Mot de passe</label>
+            <input type="password" id="loginPassword" autocomplete="current-password" />
+            <button type="submit">Se connecter</button>
+            <p class="form-error" id="authError"></p>
+          </form>
+
+          <form id="registerForm" class="auth-form">
+            <label>Nom d'utilisateur</label>
+            <input type="text" id="registerUsername" autocomplete="username" />
+            <label>Mot de passe</label>
+            <input type="password" id="registerPassword" autocomplete="new-password" />
+            <button type="submit">Créer un compte</button>
+            <p class="form-error" id="registerError"></p>
+          </form>
+        </section>
+
+        <aside class="panel users-panel hidden" id="usersPanel">
+          <div class="users-panel-header">
+            <h2>Collaborateurs</h2>
+            <p>Liste des utilisateurs de l'application.</p>
+          </div>
+          <div id="usersList" class="users-list"></div>
+        </aside>
+
+        <section class="panel tasks-panel hidden" id="tasksPanel">
+          <div class="task-header">
+            <div>
+            </div>
+          </div>
+
+          <div class="task-section">
+            <h3>Mes tâches</h3>
+            <div id="ownedTasksList" class="tasks-list"></div>
+          </div>
+          <div class="task-section">
+            <h3>Partagées avec moi</h3>
+            <div id="sharedTasksList" class="tasks-list"></div>
+          </div>
+        </section>
+
+        <section class="task-form-panel hidden" id="taskFormPanel">
+          <div class="panel task-form-modal">
+            <div class="task-form-header">
+              <h2 id="taskFormTitle">Nouvelle tâche</h2>
+              <button id="cancelTaskBtn" class="secondary">Annuler</button>
+            </div>
+
+            <form id="taskForm">
+              <label>Titre</label>
+              <input type="text" id="taskTitle" required />
+
+              <label>Description</label>
+              <textarea id="taskDescription"></textarea>
+
+              <label>Date d'échéance</label>
+              <input type="date" id="taskDueDate" />
+
+              <label>Priorité</label>
+              <select id="taskPriority">
+                <option value="high">Haute</option>
+                <option value="medium" selected>Moyenne</option>
+                <option value="low">Basse</option>
+              </select>
+
+              <label>Tags (séparés par des virgules)</label>
+              <input type="text" id="taskTags" placeholder="ex: travail,urgent" />
+
+              <div id="taskShareField">
+                <label>Partager avec</label>
+                <select id="taskShareUsers" multiple size="4"></select>
+                <p class="small-text">Sélectionnez un ou plusieurs collaborateurs.</p>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit">Enregistrer</button>
+                <button type="button" id="deleteTaskBtn" class="danger hidden">Supprimer</button>
+              </div>
+              <p class="form-error" id="taskFormError"></p>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
